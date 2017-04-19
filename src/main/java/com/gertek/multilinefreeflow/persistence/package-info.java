@@ -4,4 +4,4 @@
  * <p> Paquete que contendrá las clases de persistencia. </p>
  *
  */
-package com.gertek.multilinefreeflow.dbms.persistence;
+package com.gertek.multilinefreeflow.persistence;

@@ -1,4 +1,4 @@
-package com.gertek.multilinefreeflow.dbms.persistence;
+package com.gertek.multilinefreeflow.persistence;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -42,15 +42,15 @@ public class Audit implements Serializable,Comparable<Audit>{
 	
 	/* ***** Atributos del 'Auditoria'.*********/
 	private int id;
-	private Date date;
+	private Date auditDate;
 	private LogLevel logLevel;
 	private AppModule appModule;
 	private String functionName;
 	private String parameters;
-	private String text;
-	private ErrorType ErrorType;
-	private String user;
-	private String sessionId;
+	private String description;
+	private ErrorType errorType;
+	private String auditUser;
+	private String auditSession;
 
 	/**
 	 * <p>Constructor vacio de la clase pojo 'Auditoria'.</p>
@@ -61,91 +61,90 @@ public class Audit implements Serializable,Comparable<Audit>{
 		/* Se asigna por defecto identificador nulo.*/
 		this.id = CODIGO_NULO;
 		/* Se inicializan los atributos.*/
-		this.date = new Date();
+		this.auditDate = new Date();
 		this.logLevel = null;
 		this.appModule = null;
 		this.functionName= "";
 		this.parameters = "";
-		this.text="";
-		this.ErrorType=null;
-		this.user="";
-		this.sessionId="";	
+		this.description="";
+		this.errorType=null;
+		this.auditUser="";
+		this.auditSession="";	
 	}	
 	
 	
 
 	/**
-	 * @param LogLevel nivelTraza, 
-	 * @param AppModule modulo, 
-	 * @param String procedimiento, 
-	 * @param String parametros, 
-	 * @param String texto,
-	 * @param ErrorType tipoError, 
-	 * @param User usuario, 
-	 * @param String
+	 * @param LogLevel logLevel, 
+	 * @param AppModule appModule 
+	 * @param String functionName, 
+	 * @param String parameters, 
+	 * @param String description,
+	 * @param ErrorType errorType, 
+	 * @param String auditUser, 
+	 * @param String auditSession
 	 * 
 	 * <p>Constructor de la clase pojo 'Auditoria' con los parametros más habituales.</p>
 	 */
-	public Audit(LogLevel nivelTraza, 
-			         AppModule modulo, 
-			         String procedimiento, 
-			         String parametros, 
-			         String texto,
-			         ErrorType tipoError, 
-			         String usuario, 
-			         String sesion) {
+	public Audit(LogLevel logLevel, 
+			     AppModule appModule, 
+			     String functionName, 
+			     String parameters, 
+			     String description,
+			     ErrorType errorType, 
+			     String auditUser, 
+			     String auditSession) {
 		/* Constructor del padre.*/
 		super();
 		/* Se asigna por defecto identificador nulo.*/
 		this.id = CODIGO_NULO;
 		/* Se inicializan la fecha con la fecha del sistema.*/
-		this.date = new Date();
+		this.auditDate = new Date();
 		/* Se inicializan los atributos con los parametros recibidos.*/
-		this.logLevel = nivelTraza;
-		this.appModule = modulo;
-		this.functionName = procedimiento;
-		this.parameters = parametros;
-		this.text = texto;
-		this.ErrorType = tipoError;
-		this.user = usuario;
-		this.sessionId = sesion;
+		this.logLevel = logLevel;
+		this.appModule = appModule;
+		this.functionName = functionName;
+		this.parameters = parameters;
+		this.description = description;
+		this.errorType = errorType;
+		this.auditUser = auditUser;
+		this.auditSession = auditSession;
 	}
 	
 	/**
-	 * @param Date fecha
-	 * @param LogLevel nivelTraza, 
-	 * @param AppModule modulo, 
-	 * @param String procedimiento, 
-	 * @param String parametros, 
-	 * @param String texto,
-	 * @param ErrorType tipoError, 
-	 * @param User usuario, 
-	 * @param String
+	 * @param Date auditDate
+	 * @param LogLevel logLevel, 
+	 * @param AppModule appModule 
+	 * @param String functionName, 
+	 * @param String parameters, 
+	 * @param String description,
+	 * @param ErrorType errorType, 
+	 * @param String auditUser, 
+	 * @param String auditSession
 	 * <p>Constructor de la clase pojo 'Auditoria' con los todos los parametros.</p>
 	 */
-	public Audit(Date fecha,
-			         LogLevel nivelTraza, 
-			         AppModule modulo, 
-			         String procedimiento, 
-			         String parametros, 
-			         String texto,
-			         ErrorType tipoError, 
-			         String usuario, 
-			         String sesion) {
+	public Audit(Date auditDate,
+			     LogLevel logLevel, 
+		         AppModule appModule, 
+		         String functionName, 
+		         String parameters, 
+		         String description,
+		         ErrorType errorType, 
+		         String auditUser, 
+		         String auditSession) {
 		/* Constructor del padre.*/
 		super();
 		/* Se asigna por defecto identificador nulo.*/
 		this.id = CODIGO_NULO;
 		/* Se inicializan los atributos con los parametros recibidos.*/
-		this.date = fecha;
-		this.logLevel = nivelTraza;
-		this.appModule = modulo;
-		this.functionName = procedimiento;
-		this.parameters = parametros;
-		this.text = texto;
-		this.ErrorType = tipoError;
-		this.user = usuario;
-		this.sessionId = sesion;
+		this.logLevel = logLevel;
+		this.appModule = appModule;
+		this.functionName = functionName;
+		this.parameters = parameters;
+		this.description = description;
+		this.errorType = errorType;
+		this.auditUser = auditUser;
+		this.auditSession = auditSession;
 	}
 
 	/**
@@ -165,24 +164,26 @@ public class Audit implements Serializable,Comparable<Audit>{
 	}
 
 	/**
-	 * @return date. Se devuelve el atributo "date".
-	 */	
-	public Date getDate() {
-		/* Se devuelve el valor del atributo "date". */
-		return date;
+	 * @return auditDate. Se devuelve el atributo "auditDate".
+	 */
+	
+	public Date getAuditDate() {
+		/* Se devuelve el valor del atributo "auditDate". */
+		return auditDate;
 	}
 
 	/**
-	 * @param date. Se asigna valor al atributo "date".
+	 * @param auditDate. Se asigna valor al atributo "auditDate".
 	 */
-	public void setDate(Date date) {
-		/* Se asigna el valor del atributo "date" pasado por parametro. */
-		this.date = date;
+	public void setAuditDate(Date auditDate) {
+		/* Se asigna el valor del atributo "auditDate" pasado por parametro. */
+		this.auditDate = auditDate;
 	}
 
 	/**
 	 * @return logLevel. Se devuelve el atributo "logLevel".
-	 */	
+	 */
+	
 	public LogLevel getLogLevel() {
 		/* Se devuelve el valor del atributo "logLevel". */
 		return logLevel;
@@ -198,7 +199,8 @@ public class Audit implements Serializable,Comparable<Audit>{
 
 	/**
 	 * @return appModule. Se devuelve el atributo "appModule".
-	 */	
+	 */
+	
 	public AppModule getAppModule() {
 		/* Se devuelve el valor del atributo "appModule". */
 		return appModule;
@@ -214,7 +216,8 @@ public class Audit implements Serializable,Comparable<Audit>{
 
 	/**
 	 * @return functionName. Se devuelve el atributo "functionName".
-	 */	
+	 */
+	
 	public String getFunctionName() {
 		/* Se devuelve el valor del atributo "functionName". */
 		return functionName;
@@ -246,20 +249,20 @@ public class Audit implements Serializable,Comparable<Audit>{
 	}
 
 	/**
-	 * @return text. Se devuelve el atributo "text".
+	 * @return description. Se devuelve el atributo "description".
 	 */
 	
-	public String getText() {
-		/* Se devuelve el valor del atributo "text". */
-		return text;
+	public String getDescription() {
+		/* Se devuelve el valor del atributo "description". */
+		return description;
 	}
 
 	/**
-	 * @param text. Se asigna valor al atributo "text".
+	 * @param description. Se asigna valor al atributo "description".
 	 */
-	public void setText(String text) {
-		/* Se asigna el valor del atributo "text" pasado por parametro. */
-		this.text = text;
+	public void setDescription(String description) {
+		/* Se asigna el valor del atributo "description" pasado por parametro. */
+		this.description = description;
 	}
 
 	/**
@@ -267,8 +270,8 @@ public class Audit implements Serializable,Comparable<Audit>{
 	 */
 	
 	public ErrorType getErrorType() {
-		/* Se devuelve el valor del atributo "ErrorType". */
-		return ErrorType;
+		/* Se devuelve el valor del atributo "errorType". */
+		return errorType;
 	}
 
 	/**
@@ -276,41 +279,41 @@ public class Audit implements Serializable,Comparable<Audit>{
 	 */
 	public void setErrorType(ErrorType errorType) {
 		/* Se asigna el valor del atributo "errorType" pasado por parametro. */
-		ErrorType = errorType;
+		this.errorType = errorType;
 	}
 
 	/**
-	 * @return user. Se devuelve el atributo "user".
+	 * @return auditUser. Se devuelve el atributo "auditUser".
 	 */
 	
-	public String getUser() {
-		/* Se devuelve el valor del atributo "user". */
-		return user;
+	public String getAuditUser() {
+		/* Se devuelve el valor del atributo "auditUser". */
+		return auditUser;
 	}
 
 	/**
-	 * @param user. Se asigna valor al atributo "user".
+	 * @param auditUser. Se asigna valor al atributo "auditUser".
 	 */
-	public void setUser(String user) {
-		/* Se asigna el valor del atributo "user" pasado por parametro. */
-		this.user = user;
+	public void setAuditUser(String auditUser) {
+		/* Se asigna el valor del atributo "auditUser" pasado por parametro. */
+		this.auditUser = auditUser;
 	}
 
 	/**
-	 * @return sessionId. Se devuelve el atributo "sessionId".
+	 * @return auditSession. Se devuelve el atributo "auditSession".
 	 */
 	
-	public String getSessionId() {
-		/* Se devuelve el valor del atributo "sessionId". */
-		return sessionId;
+	public String getAuditSession() {
+		/* Se devuelve el valor del atributo "auditSession". */
+		return auditSession;
 	}
-
+	
 	/**
-	 * @param sessionId. Se asigna valor al atributo "sessionId".
+	 * @param auditSession. Se asigna valor al atributo "auditSession".
 	 */
-	public void setSessionId(String sessionId) {
-		/* Se asigna el valor del atributo "sessionId" pasado por parametro. */
-		this.sessionId = sessionId;
+	public void setAuditSession(String auditSession) {
+		/* Se asigna el valor del atributo "auditSession" pasado por parametro. */
+		this.auditSession = auditSession;
 	}
 
 	@Override
@@ -321,15 +324,15 @@ public class Audit implements Serializable,Comparable<Audit>{
 	 * */
 	public String toString() {				
 		/* Se devuelve los atributos de la clase.*/
-		return " Id " + this.id + " Fecha : " + Utils.parseDateString(this.date) + 
+		return " Id " + this.id + " Fecha : " + Utils.parseDateString(this.auditDate) + 
                " Nivel Traza : " + this.logLevel.getCode() +
 		       " Módulo : " + this.appModule +
 		       " Procedimiento : " + this.functionName +
-		       " Texto : " + this.text +
-		       " Tipo Error : " + this.ErrorType.getCode() +
-		       " Usuario : " + this.user +
+		       " Texto : " + this.description +
+		       " Tipo Error : " + this.errorType.getCode() +
+		       " Usuario : " + this.auditUser +
 		       " Parámetros : " + this.parameters +
-		       " Sesión : " + this.sessionId;
+		       " Sesión : " + this.auditSession;
 	}
 	
 	/** 
@@ -382,6 +385,6 @@ public class Audit implements Serializable,Comparable<Audit>{
 	public int compareTo(Audit auditoria) {
 		/* Se devuelve la comparación del nombre de la clase y 
 		 * la 'Auditoria' recibida por parametro.*/
-		return Utils.parseDateString(this.date).compareToIgnoreCase(Utils.parseDateString(auditoria.getDate()));
+		return Utils.parseDateString(this.auditDate).compareToIgnoreCase(Utils.parseDateString(auditoria.getAuditDate()));
 	}	
 }

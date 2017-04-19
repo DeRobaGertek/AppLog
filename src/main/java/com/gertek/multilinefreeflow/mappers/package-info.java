@@ -4,4 +4,4 @@
  * <p> Paquete que contendrá las clases de de mapeo de los atributos de tablas. </p>
  *
  */
-package com.gertek.multilinefreeflow.dbms.mappers;
+package com.gertek.multilinefreeflow.mappers;

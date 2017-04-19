@@ -1,59 +1,47 @@
-package com.gertek.multilinefreeflow.dbms.persistence;
+package com.gertek.multilinefreeflow.persistence;
 
 import java.io.Serializable;
 
 /**
  * @author Raúl De Roba 18 de abr. de 2017
  *
- * <p> Clase Pojo que contendrá al objeto 'Nivel de Traza'. </p>
- * <p> Se contenpla poder clasificar por niveles de traza tal y como hace Log4Java.
- * 	   Inicialmente se clasificará en  : </p>
- * <ul>
- * 		<li>OFF	  0</li>
- * 		<li>FATAL 100</li>
- * 		<li>ERROR 200</li>
- * 		<li>WARN  300</li>
- * 		<li>INFO  400</li>
- * 		<li>DEBUG 500</li>
- * 		<li>TRACE 600</li>
- * 		<li>ALL Max</li>
- * </ul>
- * <p>Según se requiera se podrán añadir nuevos niveles en el futuro. </p>
+ * <p> Clase Pojo que contendrá al objeto 'Modulo'. </p>
+ * <p> Se contenplan los diferentes modulos del proyecto que podrán generar 
+ *     los logs a estudiar. </p>
+ * <p> Inicialmente se trabajara con los modulos 
+ *     'Auditoría de Tránsitos' y 'Armado de Trayectos', 
+ *     aunque en el futuro se contempla gestionar todo el proyecto 
+ *     'Multi line Free Flow'. </p>
  * 
  * <p>Los atributos de la clase serán : <p>
   * <ul>
  * 		<li>id : Identificador Interno.</li>
- * 		<li>codigo : Código alfanumerico que inetificará el nivel de traza.
- *         (OFF,FATAL,ERROR,...)</li>
- * 		<li>Nivel : Númerico que indica el nivel de la traza, de manerá que al filtrar una traza
- *                  se consideraá las trazas del mismo nivel y superiores.</li>
- * 		<li>descripcion : Detalle del nivel de traza.</li>
+ * 		<li>codigo : Código alfanumerico del proyecto.</li>
+ * 		<li>descripcion : Detalle del módulo.</li>
  * </ul>
  *
  */
-public class LogLevel implements Serializable,Comparable<LogLevel>{
+public class AppModule implements Serializable,Comparable<AppModule>{
 	/* Constate del serial de la clase.*/
 	private static final long serialVersionUID = 1L;
 	/* Constante para id nulo.*/
 	public final static int CODIGO_NULO = -1;
 	
-	/* ***** Atributos del 'Nivel de Traza'.*********/
+	/* ***** Atributos del 'Modulo'.*********/
 	private int id;
 	private String code;
-	private int level;
 	private String description;
 
 	/**
-	 * <p>Constructor vacio de la clase pojo 'Nivel de Traza'.</p>
+	 * <p>Constructor vacio de la clase pojo 'Modulo'.</p>
 	 */
-	public LogLevel() {
+	public AppModule() {
 		/* Constructor del padre.*/
 		super();
 		/* Se asigna por defecto identificador nulo.*/
 		this.id = CODIGO_NULO;
 		/* Se inicializan los atributos.*/
 		this.code = "";
-		this.level = 0;
 		this.description = "";		
 	}	
 	
@@ -91,23 +79,6 @@ public class LogLevel implements Serializable,Comparable<LogLevel>{
 	}
 
 	/**
-	 * @return level. Se devuelve el atributo "level".
-	 */
-	
-	public int getLevel() {
-		/* Se devuelve el valor del atributo "level". */
-		return level;
-	}
-
-	/**
-	 * @param level. Se asigna valor al atributo "level".
-	 */
-	public void setLevel(int level) {
-		/* Se asigna el valor del atributo "level" pasado por parametro. */
-		this.level = level;
-	}
-
-	/**
 	 * @return description. Se devuelve el atributo "description".
 	 */
 	
@@ -132,13 +103,13 @@ public class LogLevel implements Serializable,Comparable<LogLevel>{
 	 * */
 	public String toString() {				
 		/* Se devuelve los atributos de la clase.*/
-		return " Id " + this.id + " Codigo : " + this.code +  
-			   " Nivel : " + this.level + "Descripción : " + this.description;
+		return " Id " + this.id + " Codigo : " + this.code +
+			   "Descripción : " + this.description;
 	}
 	
 	/** 
 	 * <p> Se obtiene la un código Hash para 
-	 *     la clase 'Nivel de Traza' en base a su 'id'.</p>
+	 *     la clase 'Modulo' en base a su 'id'.</p>
 	 */
 	@Override
 	public int hashCode() {
@@ -159,11 +130,11 @@ public class LogLevel implements Serializable,Comparable<LogLevel>{
 		/* Se comprueba que el objeto pasado por paramtro no sea nulo.*/
 		if (obj != null){
 			/* Se comprueba si el objeto pasado por parametro es de 
-			 * la clase 'Nivel de Traza'.*/
-			if (obj instanceof LogLevel){
+			 * la clase 'Modulo'.*/
+			if (obj instanceof AppModule){
 				/* Se compara los identificadores de la clase actual y 
-				 * el 'nivel de traza' recibido por parametro.*/
-				resultado =  this.getId()== ((LogLevel) obj).getId();
+				 * el 'Módulo' recibido por parametro.*/
+				resultado =  this.getId()== ((AppModule) obj).getId();
 			}
 				
 		}
@@ -172,20 +143,20 @@ public class LogLevel implements Serializable,Comparable<LogLevel>{
 	}
 
 	/**
-	 * @param LogLevel
+	 * @param AppModule
 	 * @return int
 	 * 
 	 * <p> Se usa en el caso de ordenamiento de List o Array. </p>
 	 * <ul>
-	 * 	<li> -1 Indicará que la clase es menor al 'nivel de traza' recibido por parametro. </li>
-	 * 	<li> 0 Indicará que la clase es igual al 'nivel de traza' recibido por parametro. </li>
-	 * 	<li> 1 Indicará que la clase es mayor al 'nivel de traza' recibido por parametro. </li>
+	 * 	<li> -1 Indicará que la clase es menor al 'Módulo' recibido por parametro. </li>
+	 * 	<li> 0 Indicará que la clase es igual al 'Módulo' recibido por parametro. </li>
+	 * 	<li> 1 Indicará que la clase es mayor al 'Módulo' recibido por parametro. </li>
 	 * </ul>
 	 * 
 	 */
-	public int compareTo(LogLevel nivelTraza) {
+	public int compareTo(AppModule modulo) {
 		/* Se devuelve la comparación del nombre de la clase y 
-		 * el 'nivel de traza' recibido por parametro.*/
-		return this.getCode().compareToIgnoreCase(nivelTraza.getCode());
+		 * el 'Módulo' recibido por parametro.*/
+		return this.getCode().compareToIgnoreCase(modulo.getCode());
 	}	
 }

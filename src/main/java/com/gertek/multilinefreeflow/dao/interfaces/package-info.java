@@ -4,4 +4,4 @@
  * <p> Paquete que contendrá las intefaces de las clases 'dao'. </p>
  *
  */
-package com.gertek.multilinefreeflow.dbms.dao.interfaces;
+package com.gertek.multilinefreeflow.dao.interfaces;

@@ -4,4 +4,4 @@
  * <p> Paquete que contendrá las clases de dao que se comunicaran con la Bd. </p>
  *
  */
-package com.gertek.multilinefreeflow.dbms.dao;
+package com.gertek.multilinefreeflow.dao;

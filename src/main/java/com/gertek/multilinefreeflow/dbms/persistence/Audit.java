@@ -6,7 +6,7 @@ import java.util.Date;
 import com.gertek.multilinefreeflow.util.Utils;
 
 /**
- * @author Raul 18 de abr. de 2017
+ * @author Raúl De Roba 18 de abr. de 2017
  *
  * <p> Clase Pojo que contendrá al objeto 'Auditoria'. </p>
  * <p> En la clase auditoria se registrarán las trazas que se registren en la base de datos 
@@ -49,7 +49,7 @@ public class Audit implements Serializable,Comparable<Audit>{
 	private String parameters;
 	private String text;
 	private ErrorType ErrorType;
-	private User user;
+	private String user;
 	private String sessionId;
 
 	/**
@@ -68,7 +68,7 @@ public class Audit implements Serializable,Comparable<Audit>{
 		this.parameters = "";
 		this.text="";
 		this.ErrorType=null;
-		this.user=null;
+		this.user="";
 		this.sessionId="";	
 	}	
 	
@@ -92,7 +92,7 @@ public class Audit implements Serializable,Comparable<Audit>{
 			         String parametros, 
 			         String texto,
 			         ErrorType tipoError, 
-			         User usuario, 
+			         String usuario, 
 			         String sesion) {
 		/* Constructor del padre.*/
 		super();
@@ -130,7 +130,7 @@ public class Audit implements Serializable,Comparable<Audit>{
 			         String parametros, 
 			         String texto,
 			         ErrorType tipoError, 
-			         User usuario, 
+			         String usuario, 
 			         String sesion) {
 		/* Constructor del padre.*/
 		super();
@@ -283,7 +283,7 @@ public class Audit implements Serializable,Comparable<Audit>{
 	 * @return user. Se devuelve el atributo "user".
 	 */
 	
-	public User getUser() {
+	public String getUser() {
 		/* Se devuelve el valor del atributo "user". */
 		return user;
 	}
@@ -291,7 +291,7 @@ public class Audit implements Serializable,Comparable<Audit>{
 	/**
 	 * @param user. Se asigna valor al atributo "user".
 	 */
-	public void setUser(User user) {
+	public void setUser(String user) {
 		/* Se asigna el valor del atributo "user" pasado por parametro. */
 		this.user = user;
 	}
@@ -327,7 +327,7 @@ public class Audit implements Serializable,Comparable<Audit>{
 		       " Procedimiento : " + this.functionName +
 		       " Texto : " + this.text +
 		       " Tipo Error : " + this.ErrorType.getCode() +
-		       " Usuario : " + this.user.getName() +
+		       " Usuario : " + this.user +
 		       " Parámetros : " + this.parameters +
 		       " Sesión : " + this.sessionId;
 	}

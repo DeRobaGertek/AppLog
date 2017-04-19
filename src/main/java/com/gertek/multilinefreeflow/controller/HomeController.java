@@ -5,7 +5,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 /**
- * @author Raul 18 de abr. de 2017
+ * @author Raúl De Roba 18 de abr. de 2017
  *
  * <p> Clase que se encarga de direccionar todas las peticiones del proyecto,
  *     (salvo las que tengan un controlador propio). </p>

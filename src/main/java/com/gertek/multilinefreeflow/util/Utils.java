@@ -8,7 +8,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * @author Raul 18 de abr. de 2017
+ * @author Raúl De Roba 18 de abr. de 2017
  * 
  * <p> clase que contiene diferentes metodos que pueden ser de utilidad en
  *     diferentes paquetes a la hora de castear clases o tratamiento expecificos. </p>

@@ -3,7 +3,7 @@ package com.gertek.multilinefreeflow.dbms.persistence;
 import java.io.Serializable;
 
 /**
- * @author Raul 18 de abr. de 2017
+ * @author Raúl De Roba 18 de abr. de 2017
  *
  * <p> Clase Pojo que contendrá al objeto 'Tipo de Error'. </p>
  * <p> Se contenplan los diferentes errores y/o excepciones que se van a trazar. </p>

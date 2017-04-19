@@ -3,7 +3,7 @@ package com.gertek.multilinefreeflow.dbms.persistence;
 import java.io.Serializable;
 
 /**
- * @author Raul 18 de abr. de 2017
+ * @author Raúl De Roba 18 de abr. de 2017
  *
  * <p> Clase Pojo que contendrá al objeto 'Nivel de Traza'. </p>
  * <p> Se contenpla poder clasificar por niveles de traza tal y como hace Log4Java.

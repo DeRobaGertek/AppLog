@@ -21,7 +21,7 @@ import java.io.Serializable;
  * </ul>
  *
  */
-public class Modulo implements Serializable,Comparable<Modulo>{
+public class AppModule implements Serializable,Comparable<AppModule>{
 	/* Constate del serial de la clase.*/
 	private static final long serialVersionUID = 1L;
 	/* Constante para id nulo.*/
@@ -29,20 +29,20 @@ public class Modulo implements Serializable,Comparable<Modulo>{
 	
 	/* ***** Atributos del 'Modulo'.*********/
 	private int id;
-	private String codigo;
-	private String descripcion;
+	private String code;
+	private String description;
 
 	/**
 	 * <p>Constructor vacio de la clase pojo 'Modulo'.</p>
 	 */
-	public Modulo() {
+	public AppModule() {
 		/* Constructor del padre.*/
 		super();
 		/* Se asigna por defecto identificador nulo.*/
 		this.id = CODIGO_NULO;
 		/* Se inicializan los atributos.*/
-		this.codigo = "";
-		this.descripcion = "";		
+		this.code = "";
+		this.description = "";		
 	}	
 	
 	/**
@@ -62,39 +62,38 @@ public class Modulo implements Serializable,Comparable<Modulo>{
 	}
 
 	/**
-	 * @return codigo. Se devuelve el atributo "codigo".
+	 * @return code. Se devuelve el atributo "code".
 	 */
 	
-	public String getCodigo() {
-		/* Se devuelve el valor del atributo "codigo". */
-		return codigo;
+	public String getCode() {
+		/* Se devuelve el valor del atributo "code". */
+		return code;
 	}
 
 	/**
-	 * @param codigo. Se asigna valor al atributo "codigo".
+	 * @param code. Se asigna valor al atributo "code".
 	 */
-	public void setCodigo(String codigo) {
-		/* Se asigna el valor del atributo "codigo" pasado por parametro. */
-		this.codigo = codigo;
+	public void setCode(String code) {
+		/* Se asigna el valor del atributo "code" pasado por parametro. */
+		this.code = code;
 	}
 
 	/**
-	 * @return descripcion. Se devuelve el atributo "descripcion".
+	 * @return description. Se devuelve el atributo "description".
 	 */
 	
-	public String getDescripcion() {
-		/* Se devuelve el valor del atributo "descripcion". */
-		return descripcion;
+	public String getDescription() {
+		/* Se devuelve el valor del atributo "description". */
+		return description;
 	}
 
 	/**
-	 * @param descripcion. Se asigna valor al atributo "descripcion".
+	 * @param description. Se asigna valor al atributo "description".
 	 */
-	public void setDescripcion(String descripcion) {
-		/* Se asigna el valor del atributo "descripcion" pasado por parametro. */
-		this.descripcion = descripcion;
+	public void setDescription(String description) {
+		/* Se asigna el valor del atributo "description" pasado por parametro. */
+		this.description = description;
 	}
-
 
 	@Override
 	/**
@@ -104,8 +103,8 @@ public class Modulo implements Serializable,Comparable<Modulo>{
 	 * */
 	public String toString() {				
 		/* Se devuelve los atributos de la clase.*/
-		return " Id " + this.id + " Codigo : " + this.codigo +
-			   "Descripción : " + this.descripcion;
+		return " Id " + this.id + " Codigo : " + this.code +
+			   "Descripción : " + this.description;
 	}
 	
 	/** 
@@ -132,10 +131,10 @@ public class Modulo implements Serializable,Comparable<Modulo>{
 		if (obj != null){
 			/* Se comprueba si el objeto pasado por parametro es de 
 			 * la clase 'Modulo'.*/
-			if (obj instanceof Modulo){
+			if (obj instanceof AppModule){
 				/* Se compara los identificadores de la clase actual y 
 				 * el 'Módulo' recibido por parametro.*/
-				resultado =  this.getId()== ((Modulo) obj).getId();
+				resultado =  this.getId()== ((AppModule) obj).getId();
 			}
 				
 		}
@@ -144,7 +143,7 @@ public class Modulo implements Serializable,Comparable<Modulo>{
 	}
 
 	/**
-	 * @param Modulo
+	 * @param AppModule
 	 * @return int
 	 * 
 	 * <p> Se usa en el caso de ordenamiento de List o Array. </p>
@@ -155,9 +154,9 @@ public class Modulo implements Serializable,Comparable<Modulo>{
 	 * </ul>
 	 * 
 	 */
-	public int compareTo(Modulo modulo) {
+	public int compareTo(AppModule modulo) {
 		/* Se devuelve la comparación del nombre de la clase y 
 		 * el 'Módulo' recibido por parametro.*/
-		return this.getCodigo().compareToIgnoreCase(modulo.getCodigo());
+		return this.getCode().compareToIgnoreCase(modulo.getCode());
 	}	
 }

@@ -34,7 +34,7 @@ import com.gertek.multilinefreeflow.util.Utils;
  * </ul>
  *
  */
-public class Auditoria implements Serializable,Comparable<Auditoria>{
+public class Audit implements Serializable,Comparable<Audit>{
 	/* Constate del serial de la clase.*/
 	private static final long serialVersionUID = 1L;
 	/* Constante para id nulo.*/
@@ -42,41 +42,41 @@ public class Auditoria implements Serializable,Comparable<Auditoria>{
 	
 	/* ***** Atributos del 'Auditoria'.*********/
 	private int id;
-	private Date fecha;
-	private LogLevel nivelTraza;
-	private Modulo modulo;
-	private String procedimiento;
-	private String parametros;
-	private String texto;
-	private ErrorType tipoError;
-	private User usuario;
-	private String sesion;
+	private Date date;
+	private LogLevel logLevel;
+	private AppModule appModule;
+	private String functionName;
+	private String parameters;
+	private String text;
+	private ErrorType ErrorType;
+	private User user;
+	private String sessionId;
 
 	/**
 	 * <p>Constructor vacio de la clase pojo 'Auditoria'.</p>
 	 */
-	public Auditoria() {
+	public Audit() {
 		/* Constructor del padre.*/
 		super();
 		/* Se asigna por defecto identificador nulo.*/
 		this.id = CODIGO_NULO;
 		/* Se inicializan los atributos.*/
-		this.fecha = new Date();
-		this.nivelTraza = null;
-		this.modulo = null;
-		this.procedimiento= "";
-		this.parametros = "";
-		this.texto="";
-		this.tipoError=null;
-		this.usuario=null;
-		this.sesion="";	
+		this.date = new Date();
+		this.logLevel = null;
+		this.appModule = null;
+		this.functionName= "";
+		this.parameters = "";
+		this.text="";
+		this.ErrorType=null;
+		this.user=null;
+		this.sessionId="";	
 	}	
 	
 	
 
 	/**
 	 * @param LogLevel nivelTraza, 
-	 * @param Modulo modulo, 
+	 * @param AppModule modulo, 
 	 * @param String procedimiento, 
 	 * @param String parametros, 
 	 * @param String texto,
@@ -86,8 +86,8 @@ public class Auditoria implements Serializable,Comparable<Auditoria>{
 	 * 
 	 * <p>Constructor de la clase pojo 'Auditoria' con los parametros más habituales.</p>
 	 */
-	public Auditoria(LogLevel nivelTraza, 
-			         Modulo modulo, 
+	public Audit(LogLevel nivelTraza, 
+			         AppModule modulo, 
 			         String procedimiento, 
 			         String parametros, 
 			         String texto,
@@ -99,22 +99,22 @@ public class Auditoria implements Serializable,Comparable<Auditoria>{
 		/* Se asigna por defecto identificador nulo.*/
 		this.id = CODIGO_NULO;
 		/* Se inicializan la fecha con la fecha del sistema.*/
-		this.fecha = new Date();
+		this.date = new Date();
 		/* Se inicializan los atributos con los parametros recibidos.*/
-		this.nivelTraza = nivelTraza;
-		this.modulo = modulo;
-		this.procedimiento = procedimiento;
-		this.parametros = parametros;
-		this.texto = texto;
-		this.tipoError = tipoError;
-		this.usuario = usuario;
-		this.sesion = sesion;
+		this.logLevel = nivelTraza;
+		this.appModule = modulo;
+		this.functionName = procedimiento;
+		this.parameters = parametros;
+		this.text = texto;
+		this.ErrorType = tipoError;
+		this.user = usuario;
+		this.sessionId = sesion;
 	}
 	
 	/**
 	 * @param Date fecha
 	 * @param LogLevel nivelTraza, 
-	 * @param Modulo modulo, 
+	 * @param AppModule modulo, 
 	 * @param String procedimiento, 
 	 * @param String parametros, 
 	 * @param String texto,
@@ -123,9 +123,9 @@ public class Auditoria implements Serializable,Comparable<Auditoria>{
 	 * @param String
 	 * <p>Constructor de la clase pojo 'Auditoria' con los todos los parametros.</p>
 	 */
-	public Auditoria(Date fecha,
+	public Audit(Date fecha,
 			         LogLevel nivelTraza, 
-			         Modulo modulo, 
+			         AppModule modulo, 
 			         String procedimiento, 
 			         String parametros, 
 			         String texto,
@@ -137,21 +137,20 @@ public class Auditoria implements Serializable,Comparable<Auditoria>{
 		/* Se asigna por defecto identificador nulo.*/
 		this.id = CODIGO_NULO;
 		/* Se inicializan los atributos con los parametros recibidos.*/
-		this.fecha = fecha;
-		this.nivelTraza = nivelTraza;
-		this.modulo = modulo;
-		this.procedimiento = procedimiento;
-		this.parametros = parametros;
-		this.texto = texto;
-		this.tipoError = tipoError;
-		this.usuario = usuario;
-		this.sesion = sesion;
+		this.date = fecha;
+		this.logLevel = nivelTraza;
+		this.appModule = modulo;
+		this.functionName = procedimiento;
+		this.parameters = parametros;
+		this.text = texto;
+		this.ErrorType = tipoError;
+		this.user = usuario;
+		this.sessionId = sesion;
 	}
 
 	/**
 	 * @return id. Se devuelve el atributo "id".
-	 */
-	
+	 */	
 	public int getId() {
 		/* Se devuelve el valor del atributo "id". */
 		return id;
@@ -166,156 +165,152 @@ public class Auditoria implements Serializable,Comparable<Auditoria>{
 	}
 
 	/**
-	 * @return fecha. Se devuelve el atributo "fecha".
+	 * @return date. Se devuelve el atributo "date".
+	 */	
+	public Date getDate() {
+		/* Se devuelve el valor del atributo "date". */
+		return date;
+	}
+
+	/**
+	 * @param date. Se asigna valor al atributo "date".
+	 */
+	public void setDate(Date date) {
+		/* Se asigna el valor del atributo "date" pasado por parametro. */
+		this.date = date;
+	}
+
+	/**
+	 * @return logLevel. Se devuelve el atributo "logLevel".
+	 */	
+	public LogLevel getLogLevel() {
+		/* Se devuelve el valor del atributo "logLevel". */
+		return logLevel;
+	}
+
+	/**
+	 * @param logLevel. Se asigna valor al atributo "logLevel".
+	 */
+	public void setLogLevel(LogLevel logLevel) {
+		/* Se asigna el valor del atributo "logLevel" pasado por parametro. */
+		this.logLevel = logLevel;
+	}
+
+	/**
+	 * @return appModule. Se devuelve el atributo "appModule".
+	 */	
+	public AppModule getAppModule() {
+		/* Se devuelve el valor del atributo "appModule". */
+		return appModule;
+	}
+
+	/**
+	 * @param appModule. Se asigna valor al atributo "appModule".
+	 */
+	public void setAppModule(AppModule appModule) {
+		/* Se asigna el valor del atributo "appModule" pasado por parametro. */
+		this.appModule = appModule;
+	}
+
+	/**
+	 * @return functionName. Se devuelve el atributo "functionName".
+	 */	
+	public String getFunctionName() {
+		/* Se devuelve el valor del atributo "functionName". */
+		return functionName;
+	}
+
+	/**
+	 * @param functionName. Se asigna valor al atributo "functionName".
+	 */
+	public void setFunctionName(String functionName) {
+		/* Se asigna el valor del atributo "functionName" pasado por parametro. */
+		this.functionName = functionName;
+	}
+
+	/**
+	 * @return parameters. Se devuelve el atributo "parameters".
 	 */
 	
-	public Date getFecha() {
-		/* Se devuelve el valor del atributo "fecha". */
-		return fecha;
+	public String getParameters() {
+		/* Se devuelve el valor del atributo "parameters". */
+		return parameters;
 	}
 
 	/**
-	 * @param fecha. Se asigna valor al atributo "fecha".
+	 * @param parameters. Se asigna valor al atributo "parameters".
 	 */
-	public void setFecha(Date fecha) {
-		/* Se asigna el valor del atributo "fecha" pasado por parametro. */
-		this.fecha = fecha;
+	public void setParameters(String parameters) {
+		/* Se asigna el valor del atributo "parameters" pasado por parametro. */
+		this.parameters = parameters;
 	}
 
 	/**
-	 * @return nivelTraza. Se devuelve el atributo "nivelTraza".
-	 */
-	
-	public LogLevel getNivelTraza() {
-		/* Se devuelve el valor del atributo "nivelTraza". */
-		return nivelTraza;
-	}
-
-	/**
-	 * @param nivelTraza. Se asigna valor al atributo "nivelTraza".
-	 */
-	public void setNivelTraza(LogLevel nivelTraza) {
-		/* Se asigna el valor del atributo "nivelTraza" pasado por parametro. */
-		this.nivelTraza = nivelTraza;
-	}
-
-	/**
-	 * @return modulo. Se devuelve el atributo "modulo".
+	 * @return text. Se devuelve el atributo "text".
 	 */
 	
-	public Modulo getModulo() {
-		/* Se devuelve el valor del atributo "modulo". */
-		return modulo;
+	public String getText() {
+		/* Se devuelve el valor del atributo "text". */
+		return text;
 	}
 
 	/**
-	 * @param modulo. Se asigna valor al atributo "modulo".
+	 * @param text. Se asigna valor al atributo "text".
 	 */
-	public void setModulo(Modulo modulo) {
-		/* Se asigna el valor del atributo "modulo" pasado por parametro. */
-		this.modulo = modulo;
+	public void setText(String text) {
+		/* Se asigna el valor del atributo "text" pasado por parametro. */
+		this.text = text;
 	}
 
 	/**
-	 * @return procedimiento. Se devuelve el atributo "procedimiento".
-	 */
-	
-	public String getProcedimiento() {
-		/* Se devuelve el valor del atributo "procedimiento". */
-		return procedimiento;
-	}
-
-	/**
-	 * @param procedimiento. Se asigna valor al atributo "procedimiento".
-	 */
-	public void setProcedimiento(String procedimiento) {
-		/* Se asigna el valor del atributo "procedimiento" pasado por parametro. */
-		this.procedimiento = procedimiento;
-	}
-
-	/**
-	 * @return parametros. Se devuelve el atributo "parametros".
+	 * @return errorType. Se devuelve el atributo "errorType".
 	 */
 	
-	public String getParametros() {
-		/* Se devuelve el valor del atributo "parametros". */
-		return parametros;
+	public ErrorType getErrorType() {
+		/* Se devuelve el valor del atributo "ErrorType". */
+		return ErrorType;
 	}
 
 	/**
-	 * @param parametros. Se asigna valor al atributo "parametros".
+	 * @param errorType. Se asigna valor al atributo "errorType".
 	 */
-	public void setParametros(String parametros) {
-		/* Se asigna el valor del atributo "parametros" pasado por parametro. */
-		this.parametros = parametros;
+	public void setErrorType(ErrorType errorType) {
+		/* Se asigna el valor del atributo "errorType" pasado por parametro. */
+		ErrorType = errorType;
 	}
 
 	/**
-	 * @return texto. Se devuelve el atributo "texto".
-	 */
-	
-	public String getTexto() {
-		/* Se devuelve el valor del atributo "texto". */
-		return texto;
-	}
-
-	/**
-	 * @param texto. Se asigna valor al atributo "texto".
-	 */
-	public void setTexto(String texto) {
-		/* Se asigna el valor del atributo "texto" pasado por parametro. */
-		this.texto = texto;
-	}
-
-	/**
-	 * @return tipoError. Se devuelve el atributo "tipoError".
+	 * @return user. Se devuelve el atributo "user".
 	 */
 	
-	public ErrorType getTipoError() {
-		/* Se devuelve el valor del atributo "tipoError". */
-		return tipoError;
+	public User getUser() {
+		/* Se devuelve el valor del atributo "user". */
+		return user;
 	}
 
 	/**
-	 * @param tipoError. Se asigna valor al atributo "tipoError".
+	 * @param user. Se asigna valor al atributo "user".
 	 */
-	public void setTipoError(ErrorType tipoError) {
-		/* Se asigna el valor del atributo "tipoError" pasado por parametro. */
-		this.tipoError = tipoError;
+	public void setUser(User user) {
+		/* Se asigna el valor del atributo "user" pasado por parametro. */
+		this.user = user;
 	}
 
 	/**
-	 * @return usuario. Se devuelve el atributo "usuario".
-	 */
-	
-	public User getUsuario() {
-		/* Se devuelve el valor del atributo "usuario". */
-		return usuario;
-	}
-
-	/**
-	 * @param usuario. Se asigna valor al atributo "usuario".
-	 */
-	public void setUsuario(User usuario) {
-		/* Se asigna el valor del atributo "usuario" pasado por parametro. */
-		this.usuario = usuario;
-	}
-
-	/**
-	 * @return sesion. Se devuelve el atributo "sesion".
+	 * @return sessionId. Se devuelve el atributo "sessionId".
 	 */
 	
-	public String getSesion() {
-		/* Se devuelve el valor del atributo "sesion". */
-		return sesion;
+	public String getSessionId() {
+		/* Se devuelve el valor del atributo "sessionId". */
+		return sessionId;
 	}
 
 	/**
-	 * @param sesion. Se asigna valor al atributo "sesion".
+	 * @param sessionId. Se asigna valor al atributo "sessionId".
 	 */
-	public void setSesion(String sesion) {
-		/* Se asigna el valor del atributo "sesion" pasado por parametro. */
-		this.sesion = sesion;
+	public void setSessionId(String sessionId) {
+		/* Se asigna el valor del atributo "sessionId" pasado por parametro. */
+		this.sessionId = sessionId;
 	}
 
 	@Override
@@ -326,15 +321,15 @@ public class Auditoria implements Serializable,Comparable<Auditoria>{
 	 * */
 	public String toString() {				
 		/* Se devuelve los atributos de la clase.*/
-		return " Id " + this.id + " Fecha : " + Utils.parseDateString(this.fecha) + 
-               " Nivel Traza : " + this.nivelTraza.getCodigo() +
-		       " Módulo : " + this.modulo +
-		       " Procedimiento : " + this.procedimiento +
-		       " Texto : " + this.texto +
-		       " Tipo Error : " + this.tipoError.getCodigo() +
-		       " Usuario : " + this.usuario.getNombre() +
-		       " Parámetros : " + this.parametros +
-		       " Sesión : " + this.sesion;
+		return " Id " + this.id + " Fecha : " + Utils.parseDateString(this.date) + 
+               " Nivel Traza : " + this.logLevel.getCode() +
+		       " Módulo : " + this.appModule +
+		       " Procedimiento : " + this.functionName +
+		       " Texto : " + this.text +
+		       " Tipo Error : " + this.ErrorType.getCode() +
+		       " Usuario : " + this.user.getName() +
+		       " Parámetros : " + this.parameters +
+		       " Sesión : " + this.sessionId;
 	}
 	
 	/** 
@@ -361,10 +356,10 @@ public class Auditoria implements Serializable,Comparable<Auditoria>{
 		if (obj != null){
 			/* Se comprueba si el objeto pasado por parametro es de 
 			 * la clase 'Nivel de Traza'.*/
-			if (obj instanceof Auditoria){
+			if (obj instanceof Audit){
 				/* Se compara los identificadores de la clase actual y 
 				 * la 'Auditoria' recibida por parametro.*/
-				resultado =  this.getId()== ((Auditoria) obj).getId();
+				resultado =  this.getId()== ((Audit) obj).getId();
 			}
 				
 		}
@@ -373,7 +368,7 @@ public class Auditoria implements Serializable,Comparable<Auditoria>{
 	}
 
 	/**
-	 * @param Auditoria
+	 * @param Audit
 	 * @return int
 	 * 
 	 * <p> Se usa en el caso de ordenamiento de List o Array. </p>
@@ -384,9 +379,9 @@ public class Auditoria implements Serializable,Comparable<Auditoria>{
 	 * </ul>
 	 * 
 	 */
-	public int compareTo(Auditoria auditoria) {
+	public int compareTo(Audit auditoria) {
 		/* Se devuelve la comparación del nombre de la clase y 
 		 * la 'Auditoria' recibida por parametro.*/
-		return Utils.parseDateString(this.fecha).compareToIgnoreCase(Utils.parseDateString(auditoria.getFecha()));
+		return Utils.parseDateString(this.date).compareToIgnoreCase(Utils.parseDateString(auditoria.getDate()));
 	}	
 }

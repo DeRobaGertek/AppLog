@@ -1,41 +1,38 @@
-package com.gertek.multilinefreeflow.persistence;
+package com.gertek.multilinefreeflow.dtto;
 
 import java.io.Serializable;
 
 /**
  * @author Raúl De Roba 18 de abr. de 2017
  *
- * <p> Clase Pojo que contendrá al objeto 'Modulo'. </p>
- * <p> Se contenplan los diferentes modulos del proyecto que podrán generar 
- *     los logs a estudiar. </p>
- * <p> Inicialmente se trabajara con los modulos 
- *     'Auditoría de Tránsitos' y 'Armado de Trayectos', 
- *     aunque en el futuro se contempla gestionar todo el proyecto 
- *     'Multi line Free Flow'. </p>
+ * <p> Clase Pojo que contendrá al objeto 'Tipo de Error'. </p>
+ * <p> Se contenplan los diferentes errores y/o excepciones que se van a trazar. </p>
+ * <p> Inicialmente se trabajara con los códigos de error de Oracle,
+ *     aunque se podrán añadir tipos de errores propios en un futuro. </p>
  * 
  * <p>Los atributos de la clase serán : <p>
   * <ul>
  * 		<li>id : Identificador Interno.</li>
- * 		<li>codigo : Código alfanumerico del proyecto.</li>
- * 		<li>descripcion : Detalle del módulo.</li>
+ * 		<li>codigo : Código alfanumerico del error.</li>
+ * 		<li>descripcion : Detalle del error.</li>
  * </ul>
  *
  */
-public class AppModule implements Serializable,Comparable<AppModule>{
+public class ErrorType implements Serializable,Comparable<ErrorType>{
 	/* Constate del serial de la clase.*/
 	private static final long serialVersionUID = 1L;
 	/* Constante para id nulo.*/
 	public final static int CODIGO_NULO = -1;
 	
-	/* ***** Atributos del 'Modulo'.*********/
+	/* ***** Atributos del 'Tipo de Error'.*********/
 	private int id;
 	private String code;
 	private String description;
 
 	/**
-	 * <p>Constructor vacio de la clase pojo 'Modulo'.</p>
+	 * <p>Constructor vacio de la clase pojo 'Tipo de Error'.</p>
 	 */
-	public AppModule() {
+	public ErrorType() {
 		/* Constructor del padre.*/
 		super();
 		/* Se asigna por defecto identificador nulo.*/
@@ -109,7 +106,7 @@ public class AppModule implements Serializable,Comparable<AppModule>{
 	
 	/** 
 	 * <p> Se obtiene la un código Hash para 
-	 *     la clase 'Modulo' en base a su 'id'.</p>
+	 *     la clase 'Tipo de Error' en base a su 'id'.</p>
 	 */
 	@Override
 	public int hashCode() {
@@ -130,11 +127,11 @@ public class AppModule implements Serializable,Comparable<AppModule>{
 		/* Se comprueba que el objeto pasado por paramtro no sea nulo.*/
 		if (obj != null){
 			/* Se comprueba si el objeto pasado por parametro es de 
-			 * la clase 'Modulo'.*/
-			if (obj instanceof AppModule){
+			 * la clase 'Tipo de Error'.*/
+			if (obj instanceof ErrorType){
 				/* Se compara los identificadores de la clase actual y 
-				 * el 'Módulo' recibido por parametro.*/
-				resultado =  this.getId()== ((AppModule) obj).getId();
+				 * el tipo de error recibido por parametro.*/
+				resultado =  this.getId()== ((ErrorType) obj).getId();
 			}
 				
 		}
@@ -143,20 +140,20 @@ public class AppModule implements Serializable,Comparable<AppModule>{
 	}
 
 	/**
-	 * @param AppModule
+	 * @param Tipo Error
 	 * @return int
 	 * 
 	 * <p> Se usa en el caso de ordenamiento de List o Array. </p>
 	 * <ul>
-	 * 	<li> -1 Indicará que la clase es menor al 'Módulo' recibido por parametro. </li>
-	 * 	<li> 0 Indicará que la clase es igual al 'Módulo' recibido por parametro. </li>
-	 * 	<li> 1 Indicará que la clase es mayor al 'Módulo' recibido por parametro. </li>
+	 * 	<li> -1 Indicará que la clase es menor al tipo de error recibido por parametro. </li>
+	 * 	<li> 0 Indicará que la clase es igual al tipo de error recibido por parametro. </li>
+	 * 	<li> 1 Indicará que la clase es mayor al tipo de error recibido por parametro. </li>
 	 * </ul>
 	 * 
 	 */
-	public int compareTo(AppModule modulo) {
+	public int compareTo(ErrorType tipoError) {
 		/* Se devuelve la comparación del nombre de la clase y 
-		 * el 'Módulo' recibido por parametro.*/
-		return this.getCode().compareToIgnoreCase(modulo.getCode());
+		 * el tipo de error recibido por parametro.*/
+		return this.getCode().compareToIgnoreCase(tipoError.getCode());
 	}	
 }

@@ -1,4 +1,4 @@
-package com.gertek.multilinefreeflow.persistence;
+package com.gertek.multilinefreeflow.dtto;
 
 import java.io.Serializable;
 import java.util.Date;

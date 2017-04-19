@@ -1,44 +1,59 @@
-package com.gertek.multilinefreeflow.persistence;
+package com.gertek.multilinefreeflow.dtto;
 
 import java.io.Serializable;
 
 /**
  * @author Raúl De Roba 18 de abr. de 2017
  *
- * <p> Clase Pojo que contendrá al objeto 'Tipo de Error'. </p>
- * <p> Se contenplan los diferentes errores y/o excepciones que se van a trazar. </p>
- * <p> Inicialmente se trabajara con los códigos de error de Oracle,
- *     aunque se podrán añadir tipos de errores propios en un futuro. </p>
+ * <p> Clase Pojo que contendrá al objeto 'Nivel de Traza'. </p>
+ * <p> Se contenpla poder clasificar por niveles de traza tal y como hace Log4Java.
+ * 	   Inicialmente se clasificará en  : </p>
+ * <ul>
+ * 		<li>OFF	  0</li>
+ * 		<li>FATAL 100</li>
+ * 		<li>ERROR 200</li>
+ * 		<li>WARN  300</li>
+ * 		<li>INFO  400</li>
+ * 		<li>DEBUG 500</li>
+ * 		<li>TRACE 600</li>
+ * 		<li>ALL Max</li>
+ * </ul>
+ * <p>Según se requiera se podrán añadir nuevos niveles en el futuro. </p>
  * 
  * <p>Los atributos de la clase serán : <p>
   * <ul>
  * 		<li>id : Identificador Interno.</li>
- * 		<li>codigo : Código alfanumerico del error.</li>
- * 		<li>descripcion : Detalle del error.</li>
+ * 		<li>codigo : Código alfanumerico que inetificará el nivel de traza.
+ *         (OFF,FATAL,ERROR,...)</li>
+ * 		<li>Nivel : Númerico que indica el nivel de la traza, de manerá que al filtrar una traza
+ *                  se consideraá las trazas del mismo nivel y superiores.</li>
+ * 		<li>descripcion : Detalle del nivel de traza.</li>
  * </ul>
  *
  */
-public class ErrorType implements Serializable,Comparable<ErrorType>{
+public class LogLevel implements Serializable,Comparable<LogLevel>{
 	/* Constate del serial de la clase.*/
 	private static final long serialVersionUID = 1L;
 	/* Constante para id nulo.*/
 	public final static int CODIGO_NULO = -1;
 	
-	/* ***** Atributos del 'Tipo de Error'.*********/
+	/* ***** Atributos del 'Nivel de Traza'.*********/
 	private int id;
 	private String code;
+	private int logLevel;
 	private String description;
 
 	/**
-	 * <p>Constructor vacio de la clase pojo 'Tipo de Error'.</p>
+	 * <p>Constructor vacio de la clase pojo 'Nivel de Traza'.</p>
 	 */
-	public ErrorType() {
+	public LogLevel() {
 		/* Constructor del padre.*/
 		super();
 		/* Se asigna por defecto identificador nulo.*/
 		this.id = CODIGO_NULO;
 		/* Se inicializan los atributos.*/
 		this.code = "";
+		this.logLevel = 0;
 		this.description = "";		
 	}	
 	
@@ -76,6 +91,23 @@ public class ErrorType implements Serializable,Comparable<ErrorType>{
 	}
 
 	/**
+	 * @return logLevel. Se devuelve el atributo "logLevel".
+	 */
+	
+	public int getLogLevel() {
+		/* Se devuelve el valor del atributo "logLevel". */
+		return logLevel;
+	}
+
+	/**
+	 * @param logLevel. Se asigna valor al atributo "logLevel".
+	 */
+	public void setLogLevel(int logLevel) {
+		/* Se asigna el valor del atributo "logLevel" pasado por parametro. */
+		this.logLevel = logLevel;
+	}
+
+	/**
 	 * @return description. Se devuelve el atributo "description".
 	 */
 	
@@ -100,13 +132,13 @@ public class ErrorType implements Serializable,Comparable<ErrorType>{
 	 * */
 	public String toString() {				
 		/* Se devuelve los atributos de la clase.*/
-		return " Id " + this.id + " Codigo : " + this.code +
-			   "Descripción : " + this.description;
+		return " Id " + this.id + " Codigo : " + this.code +  
+			   " Nivel : " + this.logLevel + "Descripción : " + this.description;
 	}
 	
 	/** 
 	 * <p> Se obtiene la un código Hash para 
-	 *     la clase 'Tipo de Error' en base a su 'id'.</p>
+	 *     la clase 'Nivel de Traza' en base a su 'id'.</p>
 	 */
 	@Override
 	public int hashCode() {
@@ -127,11 +159,11 @@ public class ErrorType implements Serializable,Comparable<ErrorType>{
 		/* Se comprueba que el objeto pasado por paramtro no sea nulo.*/
 		if (obj != null){
 			/* Se comprueba si el objeto pasado por parametro es de 
-			 * la clase 'Tipo de Error'.*/
-			if (obj instanceof ErrorType){
+			 * la clase 'Nivel de Traza'.*/
+			if (obj instanceof LogLevel){
 				/* Se compara los identificadores de la clase actual y 
-				 * el tipo de error recibido por parametro.*/
-				resultado =  this.getId()== ((ErrorType) obj).getId();
+				 * el 'nivel de traza' recibido por parametro.*/
+				resultado =  this.getId()== ((LogLevel) obj).getId();
 			}
 				
 		}
@@ -140,20 +172,20 @@ public class ErrorType implements Serializable,Comparable<ErrorType>{
 	}
 
 	/**
-	 * @param Tipo Error
+	 * @param LogLevel
 	 * @return int
 	 * 
 	 * <p> Se usa en el caso de ordenamiento de List o Array. </p>
 	 * <ul>
-	 * 	<li> -1 Indicará que la clase es menor al tipo de error recibido por parametro. </li>
-	 * 	<li> 0 Indicará que la clase es igual al tipo de error recibido por parametro. </li>
-	 * 	<li> 1 Indicará que la clase es mayor al tipo de error recibido por parametro. </li>
+	 * 	<li> -1 Indicará que la clase es menor al 'nivel de traza' recibido por parametro. </li>
+	 * 	<li> 0 Indicará que la clase es igual al 'nivel de traza' recibido por parametro. </li>
+	 * 	<li> 1 Indicará que la clase es mayor al 'nivel de traza' recibido por parametro. </li>
 	 * </ul>
 	 * 
 	 */
-	public int compareTo(ErrorType tipoError) {
+	public int compareTo(LogLevel nivelTraza) {
 		/* Se devuelve la comparación del nombre de la clase y 
-		 * el tipo de error recibido por parametro.*/
-		return this.getCode().compareToIgnoreCase(tipoError.getCode());
+		 * el 'nivel de traza' recibido por parametro.*/
+		return this.getCode().compareToIgnoreCase(nivelTraza.getCode());
 	}	
 }
